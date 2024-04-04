@@ -2,12 +2,6 @@ using System;
 using UnityEngine;
 
 namespace Voxel2D {
-    public enum UnitType {
-        Empty = 1 << 0,
-        Water = 1 << 1,
-        Sand = 1 << 2,
-    }
-
     public class BaseUnit {
         public UnitType unitType;
         public byte updateMask = Byte.MaxValue;
