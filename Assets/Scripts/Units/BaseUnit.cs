@@ -12,6 +12,7 @@ namespace Voxel2D {
         public UnitType unitType;
         public byte updateMask = Byte.MaxValue;
         public Vector2 pos;
+        public Color color = Color.black;
         protected bool isInit;
 
         public BaseUnit(UnitType unitType) {

@@ -8,14 +8,14 @@ namespace Voxel2D {
         public const int WORLD_BLOCK_SIZE = 256;
         public const float TICK_INTERVAL = 0.05f;
 
-        public static VoxelWorld instance { get; private set; }
+        public static VoxelWorld Instance { get; private set; }
         private Pool pool;
         private float countDownTimer = 0;
         private int simulationCount = 1;
 
         private void Awake() {
-            if (instance == null) {
-                instance = this;
+            if (VoxelWorld.Instance == null) {
+                VoxelWorld.Instance = this;
                 DontDestroyOnLoad(gameObject);
             } else {
                 Destroy(gameObject);
@@ -31,7 +31,7 @@ namespace Voxel2D {
             if (countDownTimer >= TICK_INTERVAL) {
                 for (int i = WORLD_BLOCK_SIZE - 1, countX = -1; i > countX; i--) {
                     for (int j = WORLD_BLOCK_SIZE - 1, countY = -1; j > countY; j--) {
-                        pool.container[i, j].UnitUpdate(simulationCount);
+                        pool.Container[i, j].UnitUpdate(simulationCount);
                     }
                 }
 
