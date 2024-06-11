@@ -27,7 +27,8 @@ namespace Voxel2D {
 
             rendererIns?.Dispose();
             rendererIns = new VoxelRenderer();
-            rendererIns.Initialize();
+            Material mat = rendererIns.Initialize();
+            GetComponent<MeshRenderer>().material = mat;
         }
 
         private void OnDestroy() {
@@ -36,7 +37,14 @@ namespace Voxel2D {
         }
 
         private void Update() {
-            rendererIns.Tick(default);
+            List<Color> colorList = new List<Color>();
+            for (int i = 0; i < PublicBoard.WORLD_BLOCK_SIZE; i++) {
+                for (int j = 0; j < PublicBoard.WORLD_BLOCK_SIZE; j++) {
+                    colorList.Add(pool.Container[i, j].color);
+                }
+            }
+
+            rendererIns.Tick(colorList.ToArray());
         }
 
         private void FixedUpdate() {
